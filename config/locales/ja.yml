@@ -1,0 +1,35 @@
+# 日本語変換用のymlファイル
+# カラム名と日本語の対応表を記述
+ja:
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+
+  activerecord:
+    models:
+      user: ユーザー
+      post: 投稿
+      post_comment: コメント
+      favorite: いいね
+      relationship: フォロー
+
+    attributes:
+      user:
+        name: ユーザー名
+        email: メールアドレス
+        encrypted_password: パスワード
+        profile_image_id: プロフィール画像
+        introduction: 自己紹介文
+        layout: 間取り
+        size: 広さ
+        created_at: 登録日
+        updated_at: 更新日
+
+# ページネーションのラベルを日本語に変更する。
+views:
+  pagination:
+    first: "«"
+    last: "»"
+    previous: "‹"
+    next: "›"
+    truncate: "..."
