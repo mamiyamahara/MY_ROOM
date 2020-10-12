@@ -55,6 +55,9 @@ https://docs.google.com/spreadsheets/d/1lRnzuY-MrSR5h9zQpfjbrIzhJN4ukZOG8i_BNpOw
 - JSライブラリ：jQuery
 - 仮想環境：Vagrant,VirtualBox
 
-## 使用素材(検討中)
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。# README
+## 使用素材
+・アイコン素材（フリー） ICOOON MONO
+https://icooon-mono.com/
+
+・写真素材　photo AC
+https://www.photo-ac.com/
