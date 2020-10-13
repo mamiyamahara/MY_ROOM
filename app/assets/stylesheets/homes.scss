@@ -1,3 +1,50 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.home-logo {
+	color: black;
+	font-size: 50px;
+}
+
+.home-top-logo {
+	display: flex;
+	align-items: center;
+}
+
+.home-top-logo:before, .home-top-logo:after {
+	content: "";
+	flex-grow: 1;
+	height: 1px;
+	background: black;
+	display: block;
+}
+
+.home-top-logo:before {
+	margin-right: .4px;
+}
+
+.home-top-logo:after {
+	margin-left: .4px;
+}
+
+.top-image {
+    background-image: url(top.image.jpg);
+	background-size: cover;
+    width: 100%;
+	height: 500px;
+	display: table;
+	background-size: cover;
+}
+
+.cover-text {
+    display: table-cell;
+    vertical-align: middle;
+	text-align: center;
+}
+
+.about-number {
+	border-bottom: solid 2px black;
+    font-size: 30px;
+}
