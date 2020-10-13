@@ -1,2 +1,45 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<div class="container">
+    <p class= "home-top-logo" style= "text-align: center"><font size= "2">
+        INTERIOR  DESIGN  &  LIFESTYLE   SITE
+    </font></p>
+
+    <h1 class= "home-logo" style= "color: black; text-align: center">
+	    <%= link_to " MY　ROOM ", root_path %>
+    </h1>
+
+    <p class= "text-center">
+    	<strong>LET'S  GO  ON  A  ROOM  TOUR</strong>
+    </p>
+
+<br>
+<br>
+
+    <div class= "top-image">
+    	<div class= "cover-text">
+    		<p class= "text-center" style= "font-size: 14px;">
+    			<strong>
+    			ようこそ、MY ROOMへ！<br>
+    			このサイトは、実際に住んでいる一人暮らしのお部屋の<br>
+    			インテリア写真投稿SNSサイトです。<br>
+    			<br>
+    			これから初めて一人暮らしを考えている方やインテリアでお悩みの方は<br>
+    			お気に入りのインテリアを見つけて取り入れるもよし、<br>
+    			自慢のマイルームのこだわりポイントをシェアするもよし！<br>
+    			皆でインテリアを楽しみましょう♪<br>
+    			<br>
+    			会員登録がお済みでない方は「新規登録ボタン」から<br>
+    			登録済みの方は「ログインボタン」よりご入室ください。<br>
+    		    </strong>
+    		</p>
+    	</div>
+    </div>
+
+<br>
+<br>
+
+    <div class= "form-group row justify-content-center">
+        <%= link_to "　新規登録　", new_user_registration_path, class: "btn btn-outline-dark w-25" %>
+        <p style= "padding: 0px 100px;"></p>
+        <%= link_to "　ログイン　", new_user_session_path, class: "btn btn-outline-dark w-25" %>
+    </div>
+</div>

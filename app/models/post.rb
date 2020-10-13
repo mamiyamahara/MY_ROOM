@@ -4,7 +4,7 @@ class Post < ApplicationRecord
     has_many :favorites, dependent: :destroy
     has_many :post_comments, dependent: :destroy
 
-    attachment :post_image_id, destroy: false
+    attachment :post_image, destroy: false
 
 	#バリデーションは該当するモデルに設定する。エラーにする条件を設定できる。
 	#presence trueは空欄の場合を意味する。
