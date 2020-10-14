@@ -3,9 +3,6 @@
 class Users::SessionsController < Devise::SessionsController
 
     # ログイン後、フォロー中一覧画面に遷移させる
-    def after_sign_in_path_for(resource)
-        user_follows_path(resource)
-    end
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
