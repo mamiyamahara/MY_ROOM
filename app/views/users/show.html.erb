@@ -1,2 +1,90 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class= "container">
+    <div class= "row justify-content-center" style= "margin-bottom: 50px;">
+       <h2><strong><%= @user.name %>の部屋</strong></h2>
+    </div>
+
+	<div class= "row">
+		<div class= "col-lg-12">
+            <%= link_to edit_user_path(@user) do %>
+                <%= attachment_image_tag @user, :profile_image, :fill, 45, 45, format: "jpg", fallback:"no-post_image.jpg", class: "rounded-circle" %>
+                <%= @user.name %>
+            <% end %>
+        </div>
+    </div>
+
+	<div class= "row justify-content-center">
+		<div class= "col-lg-1"></div>
+		<div class= "col-lg-8 col-lg-offset-1">
+            <% @posts.each do |post| %>
+                <%= link_to post_path(post) do %>
+                    <%= attachment_image_tag post, :post_image, :fill, 130, 130, format: "jpg" %>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+
+    <div class= "row justify-content-center" style= "margin: 50px 0px;">
+        <%= paginate @posts %>
+    </div>
+
+    <div class= "row justify-content-around" style= "border-top: 1px solid black;">
+    	<div class="d-inline-flex p-3">
+    		<div class="p-3">❤︎いいね数</div>
+    		<div class="p-3">フォロー中</div>
+    		<div class="p-3">フォロワー</div>
+    	</div>
+    </div>
+
+    <div class= "row" style= "border-top: 1px solid black;">
+    	<div class= "col-lg-12" style= "margin-top: 30px;">
+    	    <h2 style= "text-align: center;"><strong>PROFILE</strong></h2>
+        </div>
+    </div>
+
+    <div class= "row justify-content-center">
+        <div class= "col-lg-1"></div>
+
+        <div class= "col-lg-10 col-lg-offset-1">
+    	    <table class= "table table-borderless" style= "margin: 50px 0px;">
+    		    <tr>
+    		    	<td>プロフィール画像</td>
+                    <td>
+                    	<%= attachment_image_tag @user, :profile_image, :fill, 45, 45, format: "jpg", fallback:"no-post_image.jpg", class: "rounded-circle" %>
+                    </td>
+                </tr>
+
+                <tr>
+                	<td>ユーザー名</td>
+                    <td><%= @user.name %></td>
+                </tr>
+
+                <tr>
+            	    <td>メールアドレス</td>
+                    <td><%= @user.email %></td>
+                </tr>
+
+                <tr>
+            	    <td>自己紹介文</td>
+                    <td><%= @user.introduction %></td>
+                </tr>
+
+                <tr>
+                	<td>間取り</td>
+                    <td><%= @user.layout %></td>
+                </tr>
+
+                <tr>
+                	<td>広さ</td>
+                    <td><%= @user.size %></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class= "row justify-content-center">
+        <div>
+            <%= link_to "パスワードを変更する", edit_user_registration_path(@user.id), class: "btn btn-dark" %>
+            <%= link_to "編集する", edit_user_path(@user), class: "btn btn-dark" %>
+        </div>
+    </div>
+</div>

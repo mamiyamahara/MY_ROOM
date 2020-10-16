@@ -1,2 +1,40 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class= "container">
+  　     <div class= "row justify-content-center">
+            <h2 style= "margin-bottom: 50px;">登録情報変更画面</h2>
+        </div>
+
+    <%= form_for(@user) do |f| %>
+        <div class= "row justify-content-center">
+            <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: "jpg", fallback: "no-post_image.jpg", class: "rounded-circle" %>
+            <%= f.attachment_field :profile_image %><br>
+        </div>
+
+        <div class= "row justify-content-center">
+    	    <div class= "col-lg-2"></div>
+                <div class= "col-lg-8">
+        	        <%= f.label :ユーザー名 %>
+        	        <%= f.text_field :name, class: "form-control" %>
+
+        	        <%= f.label :メールアドレス %>
+        	        <%= f.text_field :email, class: "form-control" %>
+
+        	        <%= f.label :自己紹介文 %>
+        	        <%= f.text_area :introduction, class: "form-control" %>
+
+        	        <%= f.label :間取り %>
+        	        <%= f.text_field :layout, class: "form-control" %>
+
+        	        <%= f.label :広さ %>
+        	        <%= f.text_field :size, class: "form-control" %><br>
+                </div>
+            <div class= "col-lg-2"></div>
+        </div>
+
+        <div class= "row justify-content-center">
+            <div>
+                <%= link_to "戻る", user_path(@user), class: "btn btn-dark" %>
+        	    <%= f.submit "変更する", class: "btn btn-dark"  %>
+            </div>
+        </div>
+    <% end %>
+</div>
