@@ -13,14 +13,11 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   attachment :profile_image, destroy: false
+  attachment :post_image, destroy: false
 
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy # フォロー取得
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy # フォロワー取得
   has_many :following_user, through: :follower, source: :followed # 自分がフォローしている人
   has_many :follower_user, through: :followed, source: :follower # 自分をフォローしている人
-
-  #バリデーションは該当するモデルに設定する。エラーにする条件を設定できる。
-  validates :name, presence: true, length: { maximum: 20 }
-  validates :introduction, length: { maximum: 150 }
 
 end
