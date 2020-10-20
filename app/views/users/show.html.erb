@@ -47,7 +47,7 @@
     		    <tr>
     		    	<td>プロフィール画像</td>
                     <td>
-                    	<%= attachment_image_tag @user, :profile_image, :fill, 45, 45, format: "jpg", fallback:"no-post_image.jpg", class: "rounded-circle" %>
+                    	<%= attachment_image_tag @user, :profile_image, :fill, 45, 45, format: "jpg", fallback:"no-post_image.jpg", size: "45x45", class: "rounded-circle" %>
                     </td>
                 </tr>
 

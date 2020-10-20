@@ -5,7 +5,7 @@
 
     <%= form_for(@user) do |f| %>
         <div class= "row justify-content-center">
-            <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: "jpg", fallback: "no-post_image.jpg", class: "rounded-circle" %>
+            <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: "jpg", fallback: "no-post_image.jpg", size: "100x100", class: "rounded-circle" %>
             <%= f.attachment_field :profile_image %><br>
         </div>
 
