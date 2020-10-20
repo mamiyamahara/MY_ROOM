@@ -45,36 +45,36 @@ User.create!(
     ]
     )
 
-# Post.create!(
-# 	[
-# 		{
-#         	user_id: "1",
-# 	        id: "1",
-# 	        title: "モノトーンインテリア",
-# 	        body: "こだわりポイントはテレビを見ながら寝られるソファの配置です。映画が好きなので、気づいたら観ながらソファで寝てしまっていることもしばしば。見えませんが、一番手前にベッドもあります。テレビの配線をもう少しきれいにしたいので、いい案があればコメントください。",
-# 	        post_image: File.open("./app/assets/images/interior_photo1.jpg"),
-# 	        created_at: "2020-10-20",
-# 	        updated_at: "2020-10-20",
-#         },
+Post.create!(
+	[
+		{
+        	user_id: "1",
+	        id: "1",
+	        title: "モノトーンインテリア",
+	        body: "こだわりポイントはテレビを見ながら寝られるソファの配置です。映画が好きなので、気づいたら観ながらソファで寝てしまっていることもしばしば。見えませんが、一番手前にベッドもあります。テレビの配線をもう少しきれいにしたいので、いい案があればコメントください。",
+	        post_image: File.open("./app/assets/images/interior_photo1.jpg"),
+	        created_at: "2020-10-20",
+	        updated_at: "2020-10-20",
+        },
 
-#         {
-#         	user_id: "1",
-# 	        id: "2",
-# 	        title: "キッチンの収納",
-# 	        body: "あまり物を置きたくないのですが、すぐ使えるようにグラスと調味料だけは置いています。調理器具は全てステンレスにして統一感を出しています。",
-# 	        post_image: File.open("./app/assets/images/kitchen_interior.jpg"),
-# 	        created_at: "2020-10-21",
-# 	        updated_at: "2020-10-21",
-#         },
+        {
+        	user_id: "1",
+	        id: "2",
+	        title: "キッチンの収納",
+	        body: "あまり物を置きたくないのですが、すぐ使えるようにグラスと調味料だけは置いています。調理器具は全てステンレスにして統一感を出しています。",
+	        post_image: File.open("./app/assets/images/kitchen_interior.jpg"),
+	        created_at: "2020-10-21",
+	        updated_at: "2020-10-21",
+        },
 
-# 		{
-#         	user_id: "3",
-# 	        id: "1",
-# 	        title: "ウッディ調インテリア？",
-# 	        body: "暖かい感じのインテリアが好きなので、木×緑なインテリアになるように意識しています。予算的にあまり新しい家具を買ったりする余裕がなかったので、ドレッサーと椅子は実家にあった物を持ってきてそのまま使っています(笑)",
-# 	        post_image: File.open("./app/assets/images/interior_photo2.jpg"),
-# 	        created_at: "2020-10-21",
-# 	        updated_at: "2020-10-21",
-#         },
-#     ]
-#     )
+		{
+        	user_id: "3",
+	        id: "3",
+	        title: "ウッディ調インテリア？",
+	        body: "暖かい感じのインテリアが好きなので、木×緑なインテリアになるように意識しています。予算的にあまり新しい家具を買ったりする余裕がなかったので、ドレッサーと椅子は実家にあった物を持ってきてそのまま使っています(笑)",
+	        post_image: File.open("./app/assets/images/interior_photo2.jpg"),
+	        created_at: "2020-10-21",
+	        updated_at: "2020-10-21",
+        },
+    ]
+    )
