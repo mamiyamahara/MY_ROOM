@@ -8,12 +8,10 @@ class User < ApplicationRecord
 # :recoverable（パスワードをリセット）
 # :rememberable（ログイン情報を保存）
 # :validatable（emailのフォーマットなどのバリデーション）
-
+  attachment :profile_image, destroy: false
   has_many :posts
   has_many :favorites, dependent: :destroy
   has_many :post_comments, dependent: :destroy
-  attachment :profile_image, destroy: false
-  attachment :post_image, destroy: false
 
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy # フォロー取得
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy # フォロワー取得
