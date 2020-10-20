@@ -5,10 +5,8 @@
 
 	<div class= "row">
 		<div class= "col-lg-12">
-            <%= link_to edit_user_path(@user) do %>
-                <%= attachment_image_tag @user, :profile_image, :fill, 45, 45, format: "jpg", fallback:"no-post_image.jpg", class: "rounded-circle" %>
-                <%= @user.name %>
-            <% end %>
+            <%= attachment_image_tag @user, :profile_image, :fill, 45, 45, format: "jpg", fallback:"no-post_image.jpg", class: "rounded-circle" %>
+             <%= @user.name %>
         </div>
     </div>
 
@@ -58,10 +56,12 @@
                     <td><%= @user.name %></td>
                 </tr>
 
-                <tr>
-            	    <td>メールアドレス</td>
-                    <td><%= @user.email %></td>
-                </tr>
+                <% if @user == current_user %>
+                    <tr>
+            	        <td>メールアドレス</td>
+                        <td><%= @user.email %></td>
+                    </tr>
+                <% end %>
 
                 <tr>
             	    <td>自己紹介文</td>
@@ -83,8 +83,10 @@
 
     <div class= "row justify-content-center">
         <div>
-            <%= link_to "パスワードを変更する", edit_user_registration_path(@user.id), class: "btn btn-dark" %>
-            <%= link_to "編集する", edit_user_path(@user), class: "btn btn-dark" %>
+            <% if @user == current_user %>
+                <%= link_to "パスワードを変更する", edit_user_registration_path(@user.id), class: "btn btn-dark" %>
+                <%= link_to "編集する", edit_user_path(@user), class: "btn btn-dark" %>
+            <% end %>
         </div>
     </div>
 </div>

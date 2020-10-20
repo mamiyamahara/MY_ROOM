@@ -31,7 +31,9 @@
 
 <div class= "container" style= "margin-top: 50px;">
     <div class= "row justify-content-center">
-        <%= link_to "編集する", edit_post_path(@post), class: "btn btn-dark" %>
-        <%= link_to "削除する", post_path(@post), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" }, class: "btn btn-dark" %>
+        <% if @post.user == current_user %>
+            <%= link_to "編集する", edit_post_path(@post), class: "btn btn-dark" %>
+            <%= link_to "削除する", post_path(@post), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" }, class: "btn btn-dark" %>
+        <% end %>
     </div>
 </div>

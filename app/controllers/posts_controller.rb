@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.all.page(params[:page]).per(20).order("updated_at DESC")
   end
 
   def show
@@ -48,6 +48,7 @@ class PostsController < ApplicationController
   def ranking
   end
 
+  private
   def post_params
     params.require(:post).permit(:title, :body, :post_image)
   end
