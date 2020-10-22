@@ -1,3 +1,8 @@
+<head>
+    <script src="https://kit.fontawesome.com/fd914cd0dc.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
 <div class= "container">
     <div class= "row justify-content-center" style= "margin-bottom: 50px;">
        <h2><strong><%= @user.name %>の部屋</strong></h2>
@@ -26,11 +31,27 @@
     </div>
 
     <div class= "row justify-content-around" style= "border-top: 1px solid black;">
-    	<div class="d-inline-flex p-3">
-    		<div class="p-3">❤︎いいね数</div>
-    		<div class="p-3">フォロー中</div>
-    		<div class="p-3">フォロワー</div>
-    	</div>
+        <table class="">
+    		<tr>
+                <th>
+                    <i class="fa fa-heart" aria-hidden="true" style="color: black;">お気に入り</i>
+                </th>
+                <th>
+                　　　<i class="fa fa-heart" aria-hidden="true" style="color: black;">いいね</i>
+                </th>
+                <th>フォロー中</th>
+                <th>フォロワー</th>
+            </tr>
+            <tr>
+                <td>
+                    <%= link_to @user.favorites.count, post_liked_path(@users) %>
+                </td>
+                <td>
+                    <%= link_to @user.favorites.count, post_likes_path(@users) %>
+                </td>
+                <td></td>
+            </tr>
+    	</table>
     </div>
 
     <div class= "row" style= "border-top: 1px solid black;">
@@ -90,3 +111,4 @@
         </div>
     </div>
 </div>
+</body>

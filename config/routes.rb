@@ -14,8 +14,7 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create, :destroy]
     get 'likes' => 'favorites#likes', as: 'likes'
     get 'liked' => 'favorites#liked', as: 'liked'
-    resource :post_comments, only: [:create]
-    resources :post_comments, only: [:destroy]
+    resources :post_comments, only: [:create, :destroy]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
