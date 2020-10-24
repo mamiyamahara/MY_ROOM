@@ -3,6 +3,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page]).per(10).order("updated_at DESC")
     @users = User.all
+    # いいねされた総数を取得
+    @favorites = Favorite.where(post_id: current_user.posts.ids).count
   end
 
   def edit
@@ -16,9 +18,6 @@ class UsersController < ApplicationController
     else
       render "edit"
     end
-  end
-
-  def destroy
   end
 
   def follows

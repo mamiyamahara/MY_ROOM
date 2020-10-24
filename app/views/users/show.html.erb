@@ -44,12 +44,14 @@
             </tr>
             <tr>
                 <td>
-                    <%= link_to @user.favorites.count, post_liked_path(@users) %>
+                    <%= link_to @user.favorites.count, post_liked_path(@user) %>
                 </td>
                 <td>
-                    <%= link_to @user.favorites.count, post_likes_path(@users) %>
+                    <%= link_to @favorites, post_likes_path(@user) %>
                 </td>
-                <td></td>
+                <td>
+                    
+                </td>
             </tr>
     	</table>
     </div>

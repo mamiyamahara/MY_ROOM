@@ -1,13 +1,17 @@
 class RelationshipsController < ApplicationController
-  def create
-  end
+    def create
+    end
 
-  def destroy
-  end
+    def destroy
+    end
 
-  def follower
-  end
+    def follow
+      current_user.follow(params[:id])
+      redirect_to root_path
+    end
 
-  def followed
-  end
+    def unfollow
+  	  current_user.unfollow(params[:id])
+      redirect_to root_path
+    end
 end
