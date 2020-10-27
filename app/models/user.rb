@@ -11,6 +11,7 @@ class User < ApplicationRecord
   attachment :profile_image, destroy: false
   has_many :posts
   has_many :favorites, dependent: :destroy
+  has_many :favorite_posts, through: :favorites, source: :post
   has_many :post_comments, dependent: :destroy
 
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy # フォロー取得
