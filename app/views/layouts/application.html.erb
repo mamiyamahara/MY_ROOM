@@ -14,13 +14,17 @@
       <nav class= "navbar navbar-expand-lg">
         <div class= "container">
           <nav class= "nav navbar-nav navbar-left">
-            <h3><strong><%= link_to " MY ROOM ", root_path, class: "header-logo" %></strong></h3>
+            <% if user_signed_in? %>
+                <h3><strong><%= link_to " MY ROOM ", user_follows_path(current_user), class: "header-logo" %></strong></h3>
+            <% else %>
+                <h3><strong><%= link_to " MY ROOM ", root_path, class: "header-logo" %></strong></h3>
+            <% end %>
           </nav>
 
           <nav>
             <ul class= "nav navbar-nav navbar-right">
               <% if user_signed_in? %>
-              <li class= "nav-item"><%= link_to " TOP ", "/users/:user_id/follows", class: "btn btn-outline-dark" %></li>
+              <li class= "nav-item"><%= link_to " TOP ", user_follows_path(current_user), class: "btn btn-outline-dark" %></li>
                 <li class= "nav-item"><%= link_to " 投稿 ", new_post_path, class: "btn btn-outline-dark" %></li>
                 <li class= "nav-item"><%= link_to "TIME LINE ", posts_path, class: "btn btn-outline-dark" %></li>
                 <li class= "nav-item"><%= link_to " MY PAGE ", user_path(current_user), class: "btn btn-outline-dark" %></li>

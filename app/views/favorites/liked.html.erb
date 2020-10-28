@@ -6,7 +6,7 @@
 	<div class= "row justify-content-center">
 		<div class= "col-lg-1"></div>
 		<div class= "col-lg-8 col-lg-offset-3">
-            <% @favorite.each  do |favorite| %>
+            <% @favorite.each do |favorite| %>
                 <%= link_to post_path(favorite) do %>
                     <%= attachment_image_tag favorite, :post_image, :fill, 130, 130, format: "jpg" %>
                 <% end %>
