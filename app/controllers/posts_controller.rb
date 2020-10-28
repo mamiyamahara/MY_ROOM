@@ -14,11 +14,13 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.all.page(params[:page]).per(20).order("updated_at DESC")
   end
 
   def show
     @post = Post.find(params[:id])
+    @post_comment = PostComment.new
+    @post_comments = @post.post_comments
   end
 
   def edit
@@ -42,12 +44,13 @@ class PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.destroy
-    redirect_to user_path
+    redirect_to user_path(current_user)
   end
 
   def ranking
   end
 
+  private
   def post_params
     params.require(:post).permit(:title, :body, :post_image)
   end

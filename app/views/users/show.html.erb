@@ -1,13 +1,25 @@
+<head>
+    <script src="https://kit.fontawesome.com/fd914cd0dc.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
 <div class= "container">
     <div class= "row justify-content-center" style= "margin-bottom: 50px;">
-       <h2><strong><%= @user.name %>の部屋</strong></h2>
+        <h2><strong><%= @user.name %>の部屋</strong></h2>
     </div>
 
 	<div class= "row">
-		<div class= "col-lg-12">
-            <%= link_to edit_user_path(@user) do %>
-                <%= attachment_image_tag @user, :profile_image, :fill, 45, 45, format: "jpg", fallback:"no-post_image.jpg", class: "rounded-circle" %>
-                <%= @user.name %>
+		<div class= "col-lg-9">
+            <%= attachment_image_tag @user, :profile_image, :fill, 45, 45, format: "jpg", fallback:"no-post_image.jpg", size: "45x45", class: "rounded-circle" %>
+             <%= @user.name %>
+        </div>
+        <div class= "col-lg-3 text-right">
+            <% if @user != current_user %>
+                <% if current_user.following?(@user) %>
+                    <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete, class: "btn btn-dark btn-sm" %>
+                <% else %>
+                    <%= link_to "＋フォローする", user_relationships_path(@user.id), method: :post, class: "btn btn-outline-secondary btn-sm" %>
+                <% end %>
             <% end %>
         </div>
     </div>
@@ -27,12 +39,29 @@
         <%= paginate @posts %>
     </div>
 
-    <div class= "row justify-content-around" style= "border-top: 1px solid black;">
-    	<div class="d-inline-flex p-3">
-    		<div class="p-3">❤︎いいね数</div>
-    		<div class="p-3">フォロー中</div>
-    		<div class="p-3">フォロワー</div>
-    	</div>
+    <div class= "row justify-content-center" style= "border-top: 1px solid black;">
+        <div class= "col-lg-1"></div>
+        <div class= "col-lg-10">
+            <table class="table table-borderless" style ="table-layout: fixed; text-align: center;">
+    	    	<tr>
+                    <th><i class="fa fa-heart" aria-hidden="true" style="color: black;">お気に入り</i></th>
+                    <th><i class="fa fa-heart" aria-hidden="true" style="color: black;">いいね</i></th>
+                    <th>フォロー中</th>
+                    <th>フォロワー</th>
+                </tr>
+                <tr>
+                    <!-- お気に入り数表示 -->
+                    <td><%= link_to @user.favorites.count, post_liked_path(@user) %></td>
+                    <!-- いいね数表示 -->
+                    <td><%= link_to @favorites, post_likes_path(@user) %></td>
+                    <!-- フォロー数表示 -->
+   　　            　<td><%= link_to @user.follower.count, user_follows_path(@user) %></td>
+                    <!-- フォロワー数表示 -->
+                    <td><%= link_to @user.followed.count, user_followers_path(@user) %></td>
+                </tr>
+    	    </table>
+        </div>
+        <div class= "col-lg-1"></div>
     </div>
 
     <div class= "row" style= "border-top: 1px solid black;">
@@ -49,7 +78,7 @@
     		    <tr>
     		    	<td>プロフィール画像</td>
                     <td>
-                    	<%= attachment_image_tag @user, :profile_image, :fill, 45, 45, format: "jpg", fallback:"no-post_image.jpg", class: "rounded-circle" %>
+                    	<%= attachment_image_tag @user, :profile_image, :fill, 45, 45, format: "jpg", fallback:"no-post_image.jpg", size: "45x45", class: "rounded-circle" %>
                     </td>
                 </tr>
 
@@ -58,10 +87,12 @@
                     <td><%= @user.name %></td>
                 </tr>
 
-                <tr>
-            	    <td>メールアドレス</td>
-                    <td><%= @user.email %></td>
-                </tr>
+                <% if @user == current_user %>
+                    <tr>
+            	        <td>メールアドレス</td>
+                        <td><%= @user.email %></td>
+                    </tr>
+                <% end %>
 
                 <tr>
             	    <td>自己紹介文</td>
@@ -83,8 +114,11 @@
 
     <div class= "row justify-content-center">
         <div>
-            <%= link_to "パスワードを変更する", edit_user_registration_path(@user.id), class: "btn btn-dark" %>
-            <%= link_to "編集する", edit_user_path(@user), class: "btn btn-dark" %>
+            <% if @user == current_user %>
+                <%= link_to "パスワードを変更する", edit_user_registration_path(@user.id), class: "btn btn-dark" %>
+                <%= link_to "編集する", edit_user_path(@user), class: "btn btn-dark" %>
+            <% end %>
         </div>
     </div>
 </div>
+</body>

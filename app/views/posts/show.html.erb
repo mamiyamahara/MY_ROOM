@@ -1,37 +1,114 @@
-<div class= "container" style= "margin-bottom: 50px;">
-    <div class= "row justify-content-center">
-       <h2><strong><%= @post.title %></strong></h2>
-    </div>
-</div>
 
-<div class= "container" style= "margin-bottom: 50px;">
-    <div class= "row justify-content-center">
+<script src="https://kit.fontawesome.com/fd914cd0dc.js" crossorigin="anonymous"></script>
+
+ <div class= "container">
+    <div class= "row justify-content-center" style= "margin-bottom: 50px;">
+        <h2><strong><%= @post.title %></strong></h2>
+    </div>
+
+<!-- 投稿画像 -->
+    <div class= "row justify-content-center" style= "margin: 50px 0px;">
         <%= attachment_image_tag @post, :post_image, :fill, 200, 200, format: "jpg", fallback: "no-post_image.jpg" %>
     </div>
-</div>
-
-<div class= "container" style= "margin-bottom: 50px;">
+<!-- ユーザーアイコン -->
     <div class= "row">
         <div class= "col-lg-2"></div>
-        <div class= "col-lg-8 col-lg-offset-2">
+        <div class= "col-lg-5 p-2">
             <%= link_to user_path(@post.user) do %>
-                <%= attachment_image_tag @post.user, :profile_image, :fill, 45, 45, format: "jpg", fallback: "no-post_image.jpg", class: "rounded-circle" %>
+                <%= attachment_image_tag @post.user, :profile_image, :fill, 45, 45, format: "jpg", fallback: "no-post_image.jpg", size: "45x45", class: "rounded-circle" %>
             <% end %>
             <%= @post.user.name %>
+<!-- フォローボタン -->
+            <% if @post.user != current_user %>
+                <% if current_user.following?(@post.user) %>
+                    <%= link_to "フォロー外す", user_relationships_path(@post.user.id), method: :delete, class: "btn btn-dark btn-sm" %>
+                <% else %>
+                    <%= link_to "フォローする", user_relationships_path(@post.user.id), method: :post, class: "btn btn-outline-secondary btn-sm" %>
+                <% end %>
+            <% end %>
+        </div>
+<!-- いいね機能 -->
+        <div class= "col-lg-1 text-right" style= "margin-top: 7px;">
+            <!-- モデルに定義したfavorited_byメソッドで同じ人が同じ投稿にいいねしようとした場合はいいねが解除されるように条件分岐 -->
+            <% if @post.favorited_by?(current_user) %>
+                <%= link_to post_favorites_path(@post), method: :delete do %>
+                    <i class="fa fa-heart" aria-hidden="true" style="color: gray; font-size: 25px;"></i>
+                    <%= @post.favorites.count %>
+                <% end %>
+            <% else %>
+                <%= link_to post_favorites_path(@post), method: :post do %>
+                    <i class="fa fa-heart-o" aria-hidden="true" style="font-size: 25px;"></i>
+                    <%= @post.favorites.count %>
+                <% end %>
+            <% end %>
+        </div>
+        <div class= "col-lg-2 col-lg-offset2 text-right" style= "margin-top: 8px; ">
+            <i class="far fa-comment" style="font-size: 23px;"></i>
+                <%= @post.post_comments.count %> コメント
         </div>
     </div>
-
-    <div class= "row" style="margin-top: 50px;">
+<!-- 投稿内容 -->
+    <div class= "row" style="margin: 50px 0px;">
         <div class= "col-lg-2"></div>
         <div class= "col-lg-8 col-lg-offset-2">
             <%= @post.body %>
         </div>
     </div>
 </div>
+<!-- コメント一覧 -->
+<div class= "container">
+    <div class= "row justify-content-center" style= "margin-bottom: 30px;">
+        <h4 style= "border-bottom: 1px solid black;"><strong>コメント</strong></h4>
+    </div>
 
-<div class= "container" style= "margin-top: 50px;">
     <div class= "row justify-content-center">
-        <%= link_to "編集する", edit_post_path(@post), class: "btn btn-dark" %>
-        <%= link_to "削除する", post_path(@post), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" }, class: "btn btn-dark" %>
+        <div class= "col-lg-3"></div>
+        <div class= "col-lg-6">
+            <table class= "table table-borderless">
+                <% @post_comments.each do |post_comment| %>
+                    <tr>
+                        <td>
+                            <%= link_to user_path(post_comment.user), class: "user_#{post_comment.user.id}" do %>
+                                <%= attachment_image_tag post_comment.user, :profile_image, :fill, 35, 35, format: "jpg", fallback: "no-post_image.jpg", size: "35x35", class: "rounded-circle" %>
+                                <%= post_comment.user.name %>
+                            <% end %>
+
+                            <time datetime="<%= post_comment.created_at %>">
+                                <%= time_ago_in_words(post_comment.created_at) %>
+                            </time>
+
+                            <% if post_comment.user == current_user %>
+                                <%= link_to "コメントを削除する", post_post_comment_path(@post, post_comment), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class:"btn btn-danger btn-sm" %>
+                            <% end%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style= "font-size: 15px; margin-left: 20px;">
+                            <%= post_comment.comment %>
+                        </td>
+                    </tr>
+                <% end %>
+            </table>
+        </div>
+        <div class= "col-lg-3"></div>
+    </div>
+<!-- コメントフォーム -->
+    <div class= "form-group row justify-content-center" style= "margin: 50px 0px;">
+        <div class= "col-lg-2"></div>
+        <div class= "col-lg-8">
+            <%= form_for [@post, @post_comment] do |f| %>
+                <%= f.text_area :comment, size: "80x3", :placeholder => " ここからコメントを送信できます。", class: "form-controll" %>
+                <%= f.submit "送信", class: "btn btn-info btn-sm" %>
+            <% end %>
+        </div>
+        <div class= "col-lg-2"></div>
+    </div>
+<!-- 投稿削除&編集ボタン -->
+    <div class= "row justify-content-center">
+        <%= link_to "戻る", posts_path(@posts), class: "btn btn-dark" %>
+        <% if @post.user == current_user %>
+            <%= link_to "編集する", edit_post_path(@post), class: "btn btn-dark" %>
+            <%= link_to "削除する", post_path(@post), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" }, class: "btn btn-dark" %>
+        <% end %>
     </div>
 </div>

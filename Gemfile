@@ -84,4 +84,9 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-doc'
 end
+# 環境変数を管理する
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
 

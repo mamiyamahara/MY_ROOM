@@ -1,2 +1,20 @@
-<h1>Favorites#liked</h1>
-<p>Find me in app/views/favorites/liked.html.erb</p>
+<div class= "container">
+    <div class= "row justify-content-center" style= "margin-bottom: 50px;">
+       <h2><strong>お気に入り一覧</strong></h2>
+    </div>
+
+	<div class= "row justify-content-center">
+		<div class= "col-lg-1"></div>
+		<div class= "col-lg-8 col-lg-offset-3">
+            <% @favorite.each do |favorite| %>
+                <%= link_to post_path(favorite) do %>
+                    <%= attachment_image_tag favorite, :post_image, :fill, 130, 130, format: "jpg" %>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+
+    <div class= "row justify-content-center" style= "margin: 50px 0px;">
+        <%= paginate @favorite %>
+    </div>
+</div>
