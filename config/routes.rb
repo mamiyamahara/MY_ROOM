@@ -8,11 +8,11 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy]
     get 'follows' => 'relationships#follower', as: 'follows'
     get 'followers' => 'relationships#followed', as: 'followers'
+    get 'liked' => 'favorites#userliked', as: 'liked'
   end
 
   resources :posts do
     resource :favorites, only: [:create, :destroy]
-    get 'likes' => 'favorites#likes', as: 'likes'
     get 'liked' => 'favorites#liked', as: 'liked'
     resources :post_comments, only: [:create, :destroy]
   end

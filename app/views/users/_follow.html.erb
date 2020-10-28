@@ -1,32 +1,35 @@
-<table class='table'>
-  <thead>
-    <tr>
-      <th>image</th>
-      <th>name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class= "row">
+  <div class= "col-lg-1"></div>
+    <div class= "col-lg-10">
+      <table class="table" style ="table-layout: fixed; text-align: center;">
 
-  <tbody>
-    <% users.each do |user| %>
-      <tr>
-        <td><%= attachment_image_tag(user, :profile_image, :fill, 35, 35, format: "jpg", fallback: "no-post_image.jpg", size: "35x35", class: "rounded-circle" ) %></td>
-        <td><%= user.name %></td>
-
-        <!-- フォロー機能 -->
-        <td>フォロー数：<%= user.follower.count %></td>
-        <td>フォロワー数：<%= user.followed.count %></td>
-        <td>
-          <% if current_user != user %>
-            <% if current_user.following?(user) %>
-              <%= link_to 'フォロー外す', user_relationships_path(user.id), method: :delete %>
-            <% else %>
-              <%= link_to 'フォローする', user_relationships_path(user.id), method: :POST %>
-            <% end %>
-          <% end %>
-        </td>
-        <td><%= link_to "Show", user_path(user), class: "user_#{user.id}" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <% users.each do |user| %>
+          <tr>
+            <td>
+              <%= link_to user_path(user) do %>
+               　<%= attachment_image_tag(user, :profile_image, :fill, 45, 45, format: "jpg", fallback: "no-post_image.jpg", size: "45x45", class: "rounded-circle" ) %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to user_path(user) do %>
+                <%= user.name %>
+              <% end %>
+            </td>
+            <!-- フォロー機能 -->
+            <td>フォロー数：<%= user.follower.count %></td>
+            <td>フォロワー数：<%= user.followed.count %></td>
+            <td>
+              <% if current_user != user %>
+                <% if current_user.following?(user) %>
+                  <%= link_to 'フォロー外す', user_relationships_path(user.id), method: :delete, class: "btn btn-dark btn-sm" %>
+                <% else %>
+                  <%= link_to '＋フォローする', user_relationships_path(user.id), method: :post, class: "btn btn-outline-secondary btn-sm" %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <div class= "col-lg-1"></div>
+</div>

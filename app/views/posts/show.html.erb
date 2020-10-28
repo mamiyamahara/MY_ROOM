@@ -16,14 +16,14 @@
         <div class= "col-lg-5 p-2">
             <%= link_to user_path(@post.user) do %>
                 <%= attachment_image_tag @post.user, :profile_image, :fill, 45, 45, format: "jpg", fallback: "no-post_image.jpg", size: "45x45", class: "rounded-circle" %>
+                <%= @post.user.name %>
             <% end %>
-            <%= @post.user.name %>
 <!-- フォローボタン -->
             <% if @post.user != current_user %>
                 <% if current_user.following?(@post.user) %>
                     <%= link_to "フォロー外す", user_relationships_path(@post.user.id), method: :delete, class: "btn btn-dark btn-sm" %>
                 <% else %>
-                    <%= link_to "フォローする", user_relationships_path(@post.user.id), method: :post, class: "btn btn-outline-secondary btn-sm" %>
+                    <%= link_to "＋フォローする", user_relationships_path(@post.user.id), method: :post, class: "btn btn-outline-secondary btn-sm" %>
                 <% end %>
             <% end %>
         </div>

@@ -53,7 +53,7 @@
                     <!-- お気に入り数表示 -->
                     <td><%= link_to @user.favorites.count, post_liked_path(@user) %></td>
                     <!-- いいね数表示 -->
-                    <td><%= link_to @favorites, post_likes_path(@user) %></td>
+                    <td><%= link_to @favorites, user_liked_path(@user) %></td>
                     <!-- フォロー数表示 -->
    　　            　<td><%= link_to @user.follower.count, user_follows_path(@user) %></td>
                     <!-- フォロワー数表示 -->

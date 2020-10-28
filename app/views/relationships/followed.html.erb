@@ -1,6 +1,11 @@
-<h2>フォロワー</h2>
-<% if @users.count > 0 %>
-  <%= render '/users/follow', users: @users %>
-<% else %>
-  <p>フォロワーはいません</p>
-<% end %>
+<div class= "container">
+    <div class= "row justify-content-center" style= "margin-bottom: 50px;">
+       <h2><strong>フォロワー</strong></h2>
+    </div>
+
+    <% if @users.count > 0 %>
+      <%= render '/users/follow', users: @users %>
+    <% else %>
+      <p>フォロワーはいません</p>
+    <% end %>
+</div>

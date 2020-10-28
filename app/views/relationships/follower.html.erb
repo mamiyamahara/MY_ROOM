@@ -1,8 +1,12 @@
+<div class= "container">
+    <div class= "row justify-content-center" style= "margin-bottom: 50px;">
+       <h2><strong>フォロー中のアカウント</strong></h2>
+    </div>
 
-<h3>フォロー中のアカウント</h3>
-<% if @users.count > 0 %>
-  <%= render '/users/follow', users: @users %>
-<% else %>
-  <p>フォロー中のユーザーはいません</p>
-<% end %>
+    <% if @users.count > 0 %>
+      <%= render '/users/follow', users: @users %>
+    <% else %>
+      <p>フォロー中のユーザーはいません</p>
+    <% end %>
 
+</div>

@@ -13,12 +13,13 @@ class FavoritesController < ApplicationController
   	redirect_to request.referer
   end
 
-  def likes
-    @post = Post.find(params[:post_id])
-    @post.favorite_users = @post.favorite_users.where.not(id: current_user.id).distinct
-  end
-
   def liked
     @favorite = current_user.favorite_posts.page(params[:page]).per(20).order("updated_at DESC")
+  end
+
+  def userliked
+    postIdList = Post.where(user_id: params[:id]).select(:id)
+    favoUserList = Favorite.where(post_id: postIdList).where.not(user_id: params[:id]).select(:user_id)
+    @userList = User.where(id: favoUserList).distinct
   end
 end
