@@ -1,0 +1,32 @@
+「エラー解決集」
+
+①WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!エラー
+Elastic IPアドレスの割当てなどで、
+IPアドレスが変わった場合に、ssh接続しようとすると以下エラーが出る。
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ECDSA key sent by the remote host is
+SHA256:ppOBb02MUcbQD+WxwOh3i1Q7fu37R0eZJhYyDL5RCIs.
+Please contact your system administrator.
+Add correct host key in /Users/yamaharamami/.ssh/known_hosts to get rid of this message.
+Offending ECDSA key in /Users/yamaharamami/.ssh/known_hosts:9
+ECDSA host key for 54.168.118.21 has changed and you have requested strict checking.
+Host key verification failed.
+
+これは、以前ssh接続した時とフィンガープリントの内容が異なるために、
+アクセスをはじかれているエラー。
+
+
+[解決方法]古いフィンガープリントを削除する。
+上記エラー文に、Offending ECDSA key in /Users/yamaharamami/.ssh/known_hosts:9
+とあるように、.ssh/known_hostsファイルの9行目を削除すれば良い。
+
+yamaharamami@yanbarushinjitsunoMacBook-Pro ~ % vi .ssh/known_hosts
+消したい行の先頭にカーソルを当て、「dd」押すと消せる
+保存して戻り、再度ssh接続する
+yes押すと自動的に新しいipのフィンガープリントが作成される。

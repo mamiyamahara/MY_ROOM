@@ -13,12 +13,18 @@
 <!-- ユーザーアイコン -->
     <div class= "row">
         <div class= "col-lg-2"></div>
-        <div class= "col-lg-5 p-2">
+        <div class= "col-lg-1">
             <%= link_to user_path(@post.user) do %>
                 <%= attachment_image_tag @post.user, :profile_image, :fill, 45, 45, format: "jpg", fallback: "no-post_image.jpg", size: "45x45", class: "rounded-circle" %>
+            <% end %>
+        </div>
+        <div class= "col-lg-1" style= "padding: 10px 20px 0px 0px;">
+            <%= link_to user_path(@post.user) do %>
                 <%= @post.user.name %>
             <% end %>
+        </div>
 <!-- フォローボタン -->
+        <div class= "col-lg-3" style= "padding: 8px 0px 0px 0px;">
             <% if @post.user != current_user %>
                 <% if current_user.following?(@post.user) %>
                     <%= link_to "フォロー外す", user_relationships_path(@post.user.id), method: :delete, class: "btn btn-dark btn-sm" %>
@@ -28,7 +34,7 @@
             <% end %>
         </div>
 <!-- いいね機能 -->
-        <div class= "col-lg-1 text-right" style= "margin-top: 7px;">
+        <div class= "col-lg-1 text-right" style= "margin-top: 8px;">
             <!-- モデルに定義したfavorited_byメソッドで同じ人が同じ投稿にいいねしようとした場合はいいねが解除されるように条件分岐 -->
             <% if @post.favorited_by?(current_user) %>
                 <%= link_to post_favorites_path(@post), method: :delete do %>
@@ -42,10 +48,11 @@
                 <% end %>
             <% end %>
         </div>
-        <div class= "col-lg-2 col-lg-offset2 text-right" style= "margin-top: 8px; ">
+        <div class= "col-lg-2 text-right" style= "margin-top: 8px; ">
             <i class="far fa-comment" style="font-size: 23px;"></i>
                 <%= @post.post_comments.count %> コメント
         </div>
+        <div class= "col-lg-2"></div>
     </div>
 <!-- 投稿内容 -->
     <div class= "row" style="margin: 50px 0px;">
@@ -82,6 +89,8 @@
                             <% end%>
                         </td>
                     </tr>
+                </div>
+                    <div class= "row justify-content-center" style= "margin-bottom: 30px;">
                     <tr>
                         <td style= "font-size: 15px; margin-left: 20px;">
                             <%= post_comment.comment %>
