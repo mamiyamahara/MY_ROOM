@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -10,7 +12,7 @@ module MYRoom
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
-    #エラーメッセージをja.ymlファイルを用いて日本語化
+    # エラーメッセージをja.ymlファイルを用いて日本語化
     config.i18n.default_locale = :ja
     # config/locales以下のディレクトリ内にある全てのymlファイルを読み込むように指示する一文
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*.yml').to_s]

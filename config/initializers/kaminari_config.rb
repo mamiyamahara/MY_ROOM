@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
-Kaminari.configure do |config|
+Kaminari.configure do |_config|
   Kaminari.configure do |config|
-  # 1ページの表示件数のデフォルト値を5件に設定
-  config.default_per_page = 5end
+    # 1ページの表示件数のデフォルト値を5件に設定
+    config.default_per_page = 5
+  end
   # config.default_per_page = 25
   # config.max_per_page = nil
   # config.window = 4
