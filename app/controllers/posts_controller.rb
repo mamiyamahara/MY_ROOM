@@ -6,6 +6,9 @@ class PostsController < ApplicationController
   # %i[]内のアクションが実行される前にset_postアクションが実行される。同じ記述がなくなってスッキリする。
   before_action :set_post, only: %i[show edit update destroy]
 
+  # ログインしていないとURLを入力しても表示されないようにする。
+  before_action :authenticate_user!
+
   def new
     @post = Post.new
   end

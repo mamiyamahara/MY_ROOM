@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class RelationshipsController < ApplicationController
+  # ログインしていないとURLを入力しても表示されないようにする。
+  before_action :authenticate_user!
+
   def create
     current_user.follow(params[:user_id])
     redirect_to request.referer

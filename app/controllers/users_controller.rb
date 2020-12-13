@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  # ログインしていないとURLを入力しても表示されないようにする。
+  before_action :authenticate_user!
+
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page]).per(10).order('updated_at DESC')
